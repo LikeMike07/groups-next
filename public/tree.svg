@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80">
+  <!-- Top Node -->
+  <rect x="40" y="10" width="20" height="20" rx="3" fill="#333333"/>
+  
+  <!-- Vertical Line -->
+  <rect x="49" y="30" width="2" height="10" fill="#333333"/>
+  
+  <!-- Horizontal Line -->
+  <rect x="20" y="40" width="60" height="2" fill="#333333"/>
+  
+  <!-- Bottom Nodes -->
+  <rect x="10" y="50" width="20" height="20" rx="3" fill="#333333"/>
+  <rect x="40" y="50" width="20" height="20" rx="3" fill="#333333"/>
+  <rect x="70" y="50" width="20" height="20" rx="3" fill="#333333"/>
+  
+  <!-- Vertical Lines to Bottom Nodes -->
+  <rect x="19" y="40" width="2" height="10" fill="#333333"/>
+  <rect x="49" y="40" width="2" height="10" fill="#333333"/>
+  <rect x="79" y="40" width="2" height="10" fill="#333333"/>
+</svg>
