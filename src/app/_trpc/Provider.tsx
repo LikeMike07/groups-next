@@ -12,7 +12,7 @@ export default function Provider({ children }: { children: ReactNode }) {
         trpc.createClient({
             links: [
                 httpBatchLink({
-                    url: 'http://localhost:4000/api/trpc',
+                    url: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/api/trpc` : 'http://localhost:4000/api/trpc',
                     fetch(url, options) {
                         return fetch(url, {
                             ...options,
