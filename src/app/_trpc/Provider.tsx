@@ -8,11 +8,12 @@ import { trpc } from './client';
 
 export default function Provider({ children }: { children: ReactNode }) {
     const [queryClient] = useState(() => new QueryClient({}));
+    const url = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/api/trpc` : 'http://localhost:4000/api/trpc';
     const [trpcClient] = useState(() =>
         trpc.createClient({
             links: [
                 httpBatchLink({
-                    url: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/api/trpc` : 'http://localhost:4000/api/trpc',
+                    url,
                     fetch(url, options) {
                         return fetch(url, {
                             ...options,
