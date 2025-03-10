@@ -26,7 +26,7 @@ export default function GroupHeader(props: { group: RouterOutputs['group']['getG
                 <h1 className="text-xl bg-background/70 p-2 rounded-lg">{group.name}</h1>
             </div>
             <Dialog open={isEditDialogOpen} onOpenChange={(open) => (open ? setIsEditDialogOpen(true) : setIsEditDialogOpen(false))}>
-                <EditGroupDialogContent group={group} />
+                <EditGroupDialogContent group={group} onSuccess={() => setIsEditDialogOpen(false)} />
             </Dialog>
 
             <div className="col-span-2 p-2 bg-muted/20 font-mono text-sm flex justify-between">

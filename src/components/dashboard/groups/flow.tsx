@@ -11,14 +11,12 @@ import {
     useEdgesState,
     ConnectionLineType,
     addEdge,
-    OnConnectEnd,
     OnConnect,
 } from '@xyflow/react';
 import { useCallback, useMemo, useEffect, useState } from 'react';
 import Dagre from '@dagrejs/dagre';
 import { Button } from '@/components/ui/button';
 import GroupNode from '@/components/dashboard/groups/group-node';
-import { trpc } from '@/app/_trpc/client';
 
 const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'TB') => {
     const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
@@ -55,9 +53,7 @@ export default function GroupsFlow(props: { nodes: Node[]; edges: Edge[] }) {
     const nodeTypes = useMemo(() => ({ groupNode: GroupNode }), []);
     const [layoutApplied, setLayoutApplied] = useState(false);
     const [allNodesMeasured, setAllNodesMeasured] = useState(false);
-    const { fitView, screenToFlowPosition } = useReactFlow();
-
-    const addGroup = trpc.group.addGroup.useMutation();
+    const { fitView } = useReactFlow();
 
     const onConnect: OnConnect = useCallback(
         (params) => setEdges((eds) => addEdge({ ...params, type: ConnectionLineType.SmoothStep, animated: true }, eds)),
@@ -80,11 +76,13 @@ export default function GroupsFlow(props: { nodes: Node[]; edges: Edge[] }) {
 
     // Custom nodes change handler to detect when measurements change
     const handleNodesChange = useCallback(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (changes: any) => {
             onNodesChange(changes);
 
             // Reset the layout applied flag if nodes are being added or removed
-            const hasStructuralChanges = changes.some((change) => change.type === 'add' || change.type === 'remove');
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const hasStructuralChanges = changes.some((change: any) => change.type === 'add' || change.type === 'remove');
 
             if (hasStructuralChanges && layoutApplied) {
                 setLayoutApplied(false);

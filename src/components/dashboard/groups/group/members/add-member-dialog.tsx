@@ -6,7 +6,6 @@ import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/
 import { Input } from '@/components/ui/input';
 import { UploadButton } from '@/components/uploadthing/uploadthing';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
 import { z } from 'zod';
@@ -22,7 +21,6 @@ const newMemberSchema = z.object({
 
 export default function AddMemberDialogContent(props: { groupId: number }) {
     const addNewMember = trpc.group.addUserToGroup.useMutation();
-    const [isUploadImageDisabled, setIsUploadImageDisabled] = useState(false);
     const form = useForm<z.infer<typeof newMemberSchema>>({
         resolver: zodResolver(newMemberSchema),
         defaultValues: {

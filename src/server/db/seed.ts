@@ -158,8 +158,8 @@ export async function seedUsers() {
         const insertedUserId = await db
             .insert(schema.users)
             .values({
-                first_name: user.first_name,
-                last_name: user.last_name,
+                firstName: user.first_name,
+                lastName: user.last_name,
                 email: user.email,
             })
             .returning({ id: schema.users.id });
@@ -170,7 +170,7 @@ export async function seedUsers() {
 
         await Promise.all(
             targetGroups.map(async (targetGroup) =>
-                db.insert(schema.memberships).values({ user_id: insertedUserId[0].id, group_id: targetGroup[0].id })
+                db.insert(schema.memberships).values({ userId: insertedUserId[0].id, groupId: targetGroup[0].id })
             )
         );
     });

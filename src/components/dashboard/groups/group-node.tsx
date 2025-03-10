@@ -1,5 +1,5 @@
 'use client';
-import { Group, useGroupPageContext } from '@/app/dashboard/groups/Provider';
+import { Group } from '@/app/dashboard/groups/Provider';
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/components/ui/context-menu';
 import { Handle, Position } from '@xyflow/react';
 import { Plus } from 'lucide-react';
@@ -10,7 +10,6 @@ interface Props {
 }
 export default function GroupNode({ data }: Props) {
     const router = useRouter();
-    const { updateSelectedGroup } = useGroupPageContext();
 
     return (
         <ContextMenu>

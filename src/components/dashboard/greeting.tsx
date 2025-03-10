@@ -11,7 +11,7 @@ export default function Greeting() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Hello, {user.data?.first_name}!</CardTitle>
+                <CardTitle>Hello, {user.data?.firstName}!</CardTitle>
                 <CardDescription>Welcome to groups.</CardDescription>
             </CardHeader>
         </Card>
