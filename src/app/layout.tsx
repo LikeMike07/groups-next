@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Provider from './_trpc/Provider';
 import './globals.css';
 import { poppins, spaceMano, jetMono } from './styles/fonts';
+import { ThemeProvider } from '@/components/providers/theme-provider';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -17,7 +18,11 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${spaceMano.variable} ${poppins.variable} antialiased ${poppins.className} ${jetMono.variable}`}>
                 <div className="w-full ">
-                    <Provider>{children}</Provider>
+                    <Provider>
+                        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                            {children}
+                        </ThemeProvider>
+                    </Provider>
                 </div>
             </body>
         </html>

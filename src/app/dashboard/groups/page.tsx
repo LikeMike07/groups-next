@@ -10,7 +10,6 @@ import { GroupPageContext } from './Provider';
 import { Button } from '@/components/ui/button';
 import { ArrowRightFromLine } from 'lucide-react';
 import { GroupSidebar, GroupSidebarContent } from '@/components/dashboard/groups/group-sidebar';
-import GroupDetail from '@/components/dashboard/groups/group/group-detail';
 
 export default function GroupsPage() {
     const groups = trpc.user.groups.useQuery();
@@ -21,11 +20,11 @@ export default function GroupsPage() {
 
     if (!groups.data) throw new Error('Error fetching groups');
 
-    const nodes: Node[] = groups.data.map((group, i) => {
+    const nodes: Node[] = groups.data.map((group) => {
         return {
             id: group.id.toString(),
             type: 'groupNode',
-            position: { x: 0, y: 100 * i },
+            position: { x: 0, y: 0 },
             data: { ...group },
         };
     });
@@ -39,6 +38,7 @@ export default function GroupsPage() {
                 style={{
                     height: `${100 - 15}vh`,
                 }}
+                key={groups.dataUpdatedAt}
             >
                 <ReactFlowProvider>
                     <GroupsFlow nodes={nodes} edges={edges} />
@@ -48,7 +48,6 @@ export default function GroupsPage() {
                         <Button className="absolute right-4 top-4" size={'icon'} onClick={() => updateSelectedGroup(null)}>
                             <ArrowRightFromLine />
                         </Button>
-                        {selectedGroup && <GroupDetail group={selectedGroup} />}
                     </GroupSidebarContent>
                 </GroupSidebar>
             </div>

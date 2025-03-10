@@ -9,16 +9,16 @@ export default function Breadcrumbs() {
 
     return (
         <Breadcrumb>
-            <BreadcrumbList>
+            <BreadcrumbList className="inline-flex items-baseline">
                 {paths.map(
                     (path, i, arr) =>
                         path.length > 0 && (
-                            <>
+                            <div key={path} className="inline-flex items-center gap-2">
                                 <BreadcrumbItem>
                                     <BreadcrumbLink>{path}</BreadcrumbLink>
                                 </BreadcrumbItem>
                                 {arr.length > i + 1 && <BreadcrumbSeparator key={`seperator-${i}`} />}
-                            </>
+                            </div>
                         )
                 )}
             </BreadcrumbList>

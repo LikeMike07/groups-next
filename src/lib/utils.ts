@@ -1,3 +1,4 @@
+import { Edge } from '@xyflow/react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -8,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 const getPathSegments = (path: string): string[] => path.split('.');
 
 export const createEdgesFromPaths = (groups: { id: number; path: string; name: string; imgUrl: string | null }[]) => {
-    const edges: { id: string; source: string; target: string }[] = [];
+    const edges: Edge[] = [];
     const pathToId = new Map<string, string>();
 
     // First, create a mapping of full paths to node IDs
@@ -38,6 +39,7 @@ export const createEdgesFromPaths = (groups: { id: number; path: string; name: s
                 id: `${parentId}-${childId}`,
                 source: parentId,
                 target: childId,
+                type: 'smoothstep',
             });
         }
     });

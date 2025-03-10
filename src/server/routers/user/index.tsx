@@ -13,8 +13,8 @@ export const userRouter = router({
         const userGroupPaths = await db
             .select({ path: groups.path })
             .from(groups)
-            .innerJoin(memberships, eq(memberships.group_id, groups.id))
-            .where(eq(memberships.user_id, userId));
+            .innerJoin(memberships, eq(memberships.groupId, groups.id))
+            .where(eq(memberships.userId, userId));
 
         if (userGroupPaths.length === 0) {
             return [];

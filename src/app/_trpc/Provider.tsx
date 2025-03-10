@@ -12,7 +12,7 @@ export default function Provider({ children }: { children: ReactNode }) {
         trpc.createClient({
             links: [
                 httpBatchLink({
-                    url: 'http://localhost:3005/api/trpc',
+                    url: 'http://localhost:4000/api/trpc',
                     fetch(url, options) {
                         return fetch(url, {
                             ...options,
